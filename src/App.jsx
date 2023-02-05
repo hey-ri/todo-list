@@ -15,7 +15,7 @@ function App() {
     // -- Filter *onFilterChanged
 
     const [todoList, setTodoList] = useState([]);
-    const [filterTodoList, setFilterTodoList] = useState(true);
+    const [filterTodoList, setFilterTodoList] = useState(false);
     const [selectedFilter, setselectedFilter] = useState();
     const onItemAdded = (newItem) => {
         setTodoList([...todoList, newItem]);
@@ -23,10 +23,15 @@ function App() {
     };
     const onFilterChanged = () => {};
 
+    const onRemoveTodo = (text) => {
+        setTodoList((todos) => todos.filter((todo) => todo.text !== text));
+        console.log(todoList);
+    };
+
     return (
         <div className="App">
             <TodoInput onItemAdded={onItemAdded} />
-            <TodoItemList filterTodoList={filterTodoList} todoList={todoList} />
+            <TodoItemList filterTodoList={filterTodoList} todoList={todoList} onRemoveTodo={onRemoveTodo} />
             <Filter onFilterChanged={onFilterChanged}></Filter>
         </div>
     );
