@@ -1,0 +1,10 @@
+.filter {
+    display: flex;
+    gap: 1rem;
+    font-size: 14px;
+    color: grey;
+}
+
+.active {
+    color: black;
+}
