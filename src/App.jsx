@@ -17,19 +17,20 @@ function App() {
   const [todoList, setTodoList] = useState([]);
   const [filterTodoList, setFilterTodoList] = useState(false);
   const [selectedFilter, setselectedFilter] = useState();
+
   const onItemAdded = (newItem) => {
     setTodoList([...todoList, newItem]);
     console.log({ newItem });
   };
   const onFilterChanged = () => {};
 
-  const onRemoveTodo = (text) => {
-    setTodoList((todos) => todos.filter((todo) => todo.text !== text));
+  const onRemoveTodo = (id) => {
+    setTodoList((todos) => todos.filter((todo) => todo.id !== id));
   };
 
   return (
     <div className="App">
-      <TodoInput onItemAdded={onItemAdded} />
+      <TodoInput onItemAdded={onItemAdded} todoList={todoList} />
       <TodoItemList filterTodoList={filterTodoList} todoList={todoList} onRemoveTodo={onRemoveTodo} />
       <Filter onFilterChanged={onFilterChanged}></Filter>
     </div>

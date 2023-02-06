@@ -7,8 +7,8 @@ export function TodoItemList({ filterTodoList, todoList, onRemoveTodo }) {
             {todo.text}
             <button
               onClick={() => {
-                onRemoveTodo(todo.text);
-                console.log(todo.text);
+                onRemoveTodo(todo.id);
+                console.log(todo.id);
               }}
             >
               삭제
