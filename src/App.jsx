@@ -30,7 +30,12 @@ function App() {
   return (
     <div className="App">
       <TodoInput onItemAdded={onItemAdded} />
-      <TodoItemList filterTodoList={filterTodoList} todoList={todoList} onRemoveTodo={onRemoveTodo} />
+      <TodoItemList
+        filterTodoList={filterTodoList}
+        todoList={todoList}
+        setTodoList={setTodoList}
+        onRemoveTodo={onRemoveTodo}
+      />
       <Filter onFilterChanged={onFilterChanged}></Filter>
     </div>
   );

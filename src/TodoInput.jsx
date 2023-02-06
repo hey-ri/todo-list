@@ -3,7 +3,7 @@ import uuid from 'react-uuid';
 export function TodoInput({ onItemAdded }) {
   const onSubmit = (e) => {
     e.preventDefault();
-    onItemAdded({ text: e.target.task.value, id: uuid() });
+    onItemAdded({ text: e.target.task.value, id: uuid(), checked: false });
     console.log(e.target.task.value);
     e.target.task.value = '';
   };
