@@ -1,6 +1,6 @@
 import styles from './TodoItemList.module.css';
 
-export function TodoItemList({ filterTodoList, todoList, onRemoveTodo, setTodoList }) {
+export function TodoItemList({ todoList, onRemoveTodo, setTodoList }) {
   const onCheckedTodo = (id) => {
     setTodoList(todoList.map((todo) => (todo.id === id ? { ...todo, checked: !todo.checked } : todo)));
 
@@ -18,10 +18,9 @@ export function TodoItemList({ filterTodoList, todoList, onRemoveTodo, setTodoLi
               <button
                 onClick={() => {
                   onRemoveTodo(todo.id);
-                  console.log(todo.id);
                 }}
               >
-                삭제
+                🗑
               </button>
             </span>
           </div>
