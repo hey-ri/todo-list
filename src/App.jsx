@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
 import './App.css';
 import { TodoInput } from './TodoInput';
 import { TodoItemList } from './TodoItemList';
@@ -30,7 +29,7 @@ function App() {
 
   return (
     <div className="App">
-      <TodoInput onItemAdded={onItemAdded} todoList={todoList} />
+      <TodoInput onItemAdded={onItemAdded} />
       <TodoItemList filterTodoList={filterTodoList} todoList={todoList} onRemoveTodo={onRemoveTodo} />
       <Filter onFilterChanged={onFilterChanged}></Filter>
     </div>

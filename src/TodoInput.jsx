@@ -1,7 +1,9 @@
-export function TodoInput({ onItemAdded, todoList }) {
+import uuid from 'react-uuid';
+
+export function TodoInput({ onItemAdded }) {
   const onSubmit = (e) => {
     e.preventDefault();
-    onItemAdded({ text: e.target.task.value, id: todoList.length });
+    onItemAdded({ text: e.target.task.value, id: uuid() });
     console.log(e.target.task.value);
     e.target.task.value = '';
   };
