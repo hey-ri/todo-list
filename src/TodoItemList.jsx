@@ -5,7 +5,7 @@ export function TodoItemList({ items, onRemoveTodo, onTodoChanged }) {
     <div>
       <div className="todoItemList">
         {items.map((todo, index) => (
-          <TodoItem index={index} todo={todo} onRemoveTodo={onRemoveTodo} onTodoChanged={onTodoChanged} />
+          <TodoItem key={index} todo={todo} onRemoveTodo={onRemoveTodo} onTodoChanged={onTodoChanged} />
         ))}
       </div>
     </div>
