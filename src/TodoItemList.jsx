@@ -1,20 +1,20 @@
 import styles from './TodoItemList.module.css';
 
-export function TodoItemList({ todoList, onRemoveTodo, setTodoList, filterTodoList }) {
-  const onCheckedTodo = (id) => {
-    setTodoList(todoList.map((todo) => (todo.id === id ? { ...todo, checked: !todo.checked } : todo)));
+export function TodoItemList({ items, onRemoveTodo, onTodoChanged }) {
+  const onCheckedTodo = (todo, checked) => {
+    todo.checked = checked;
+    onTodoChanged(todo);
+    // setTodoList(todoList.map((todo) => (todo.id === id ? { ...todo, checked: !todo.checked } : todo)));
 
-    console.log(todoList);
+    console.log(items);
   };
-
-  console.log({ filterTodoList });
 
   return (
     <div>
       <div className="todoItemList">
-        {todoList.map((todo, index) => (
+        {items.map((todo, index) => (
           <div key={index}>
-            <input type="checkbox" checked={todoList.checked} onChange={() => onCheckedTodo(todo.id)} />
+            <input type="checkbox" checked={todo.checked} onChange={(e) => onCheckedTodo(todo, e.target.checked)} />
             <span className={todo.checked === true ? styles.complete : styles.incomplete}>
               {todo.text}
               <button

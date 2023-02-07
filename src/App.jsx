@@ -1,50 +1,56 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { TodoInput } from './TodoInput';
 import { TodoItemList } from './TodoItemList';
 import Filter from './Filter';
 
 function App() {
+  //@=state / $: = useeffect , => = 뭘 바꿀건지 / * eventlistener
+
   // App
   // @todoList
   // @filteredTodoList
+  // $: [filter, todoList] => todoList
   // -- TodoInput  *onItemAdded
-  // -- TodoItemList (map) {@filteredTodoList}
-  //    -- TodoItem {@todo}
+  // -- TodoItemList items={@filteredTodoList} *onTodoChanged *onTodoRemoved
+  //    -- TodoItem value={@todo} *onChanged *onRemoved
   // -- Filter *onFilterChanged
 
   const [todoList, setTodoList] = useState([]);
-  //0, 1, 2 = all, completed, incompleted
-  const [filterTodoList, setFilterTodoList] = useState(0);
+  const [filter, setFilter] = useState('all');
+  const [filterTodoList, setFilterTodoList] = useState(todoList);
 
   const onItemAdded = (newItem) => {
     setTodoList([...todoList, newItem]);
     console.log({ newItem });
   };
 
-  const onFilterChanged = (status) => {
-    const t = todoList.filter((todos) => todos.checked === true);
-    const f = todoList.filter((todos) => todos.checked === false);
+  useEffect(() => {
+    if (filter === 'completed') {
+      setFilterTodoList(todoList.filter((t) => t.checked));
+    } else if (filter === 'incompleted') {
+      setFilterTodoList(todoList.filter((t) => !t.checked));
+    } else {
+      setFilterTodoList(todoList);
+    }
+  }, [filter, todoList]);
 
-    t === true && status === 'completed';
-    f === false && status === 'incompleted';
-
-    console.log({ t, f, status });
+  const onFilterChanged = (filter) => {
+    setFilter(filter);
   };
 
-  const onRemoveTodo = (id) => {
+  const onTodoRemoved = (id) => {
     setTodoList((todos) => todos.filter((todo) => todo.id !== id));
+  };
+
+  const onTodoChanged = (todo) => {
+    setTodoList(todoList.map((t) => (t.id === todo.id ? todo : t)));
   };
 
   return (
     <div className="App">
       <TodoInput onItemAdded={onItemAdded} />
-      <TodoItemList
-        todoList={todoList}
-        setTodoList={setTodoList}
-        onRemoveTodo={onRemoveTodo}
-        filterTodoList={filterTodoList}
-      />
+      <TodoItemList items={filterTodoList} onTodoChanged={onTodoChanged} onTodoRemoved={onTodoRemoved} />
       <Filter onFilterChanged={onFilterChanged}></Filter>
     </div>
   );
