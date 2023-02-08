@@ -4,24 +4,25 @@
 }
 
 .todo_item_field {
-  width: 60%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 3px;
+  margin: 0 auto;
 }
 
 .todo_text {
-  width: 50%;
+  width: 65%;
 }
 
 .edit_input {
-  width: 65%;
+  width: 10%;
   border: 1px solid #ccc;
 }
 
 .btn_box {
-  width: 25%;
+  width: 20%;
   display: flex;
   justify-content: space-between;
 }

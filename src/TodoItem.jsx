@@ -48,7 +48,7 @@ export function TodoItem({ todo, onTodoRemoved, onTodoChanged }) {
             onTodoRemoved(todo.id);
           }}
         >
-          X
+          삭제
         </button>
       </div>
     </div>
