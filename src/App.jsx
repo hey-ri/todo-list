@@ -19,13 +19,9 @@ function App() {
   const [todoList, setTodoList] = useState([]);
   const [filter, setFilter] = useState('all');
   const filterTodoList = useMemo(() => {
-    if (filter === 'completed') {
-      return todoList.filter((t) => t.checked);
-    } else if (filter === 'incompleted') {
-      return todoList.filter((t) => !t.checked);
-    } else {
-      return todoList;
-    }
+    if (filter === 'completed') return todoList.filter((t) => t.checked);
+    else if (filter === 'incompleted') return todoList.filter((t) => !t.checked);
+    else return todoList;
   }, [filter, todoList]);
 
   const onItemAdded = (newItem) => {
