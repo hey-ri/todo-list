@@ -47,8 +47,8 @@ function App() {
 
   return (
     <div className="App">
-      <TodoInput onItemAdded={onItemAdded} />
       <Filter onFilterChanged={onFilterChanged}></Filter>
+      <TodoInput onItemAdded={onItemAdded} />
       <TodoItemList items={filterTodoList} onTodoChanged={onTodoChanged} onTodoRemoved={onTodoRemoved} />
     </div>
   );

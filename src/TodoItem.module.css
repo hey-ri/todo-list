@@ -2,3 +2,32 @@
   color: grey;
   text-decoration-line: line-through;
 }
+
+.todo_item_field {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px;
+}
+
+.todo_text {
+  width: 50%;
+}
+
+.edit_input {
+  width: 65%;
+  border: 1px solid #ccc;
+}
+
+.btn_box {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn_box button {
+  background-color: transparent;
+  border: 1px solid #ccc;
+  padding: 3px;
+}

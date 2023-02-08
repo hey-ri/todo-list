@@ -3,6 +3,9 @@
     gap: 1rem;
     font-size: 14px;
     color: grey;
+    width: 100%;
+    justify-content: center;
+    padding: 1rem;
 }
 
 .active {

@@ -28,27 +28,29 @@ export function TodoItem({ todo, onTodoRemoved, onTodoChanged }) {
   };
 
   return (
-    <div>
+    <div className={styles.todo_item_field}>
       <input type="checkbox" checked={todo.checked} onChange={(e) => onCheckedTodo(todo, e.target.checked)} />
       {isEditTodo ? (
-        <input onChange={onEditTodoInput} value={newTodo} />
+        <input onChange={onEditTodoInput} value={newTodo} className={styles.edit_input} />
       ) : (
-        <span className={todo.checked === true ? styles.complete : styles.incomplete}>{todo.text}</span>
+        <span className={`${todo.checked === true && styles.complete} ${styles.todo_text}`}>{todo.text}</span>
       )}
-      {!todo.checked ? (
-        isEditTodo ? (
-          <button onClick={() => onSubmit(todo)}>완료</button>
-        ) : (
-          <button onClick={() => onEditTodo()}>수정</button>
-        )
-      ) : null}
-      <button
-        onClick={() => {
-          onTodoRemoved(todo.id);
-        }}
-      >
-        🗑
-      </button>
+      <div className={styles.btn_box}>
+        {!todo.checked ? (
+          isEditTodo ? (
+            <button onClick={() => onSubmit(todo)}>완료</button>
+          ) : (
+            <button onClick={() => onEditTodo()}>수정</button>
+          )
+        ) : null}
+        <button
+          onClick={() => {
+            onTodoRemoved(todo.id);
+          }}
+        >
+          🗑
+        </button>
+      </div>
     </div>
   );
 }

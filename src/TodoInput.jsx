@@ -1,4 +1,5 @@
 import uuid from 'react-uuid';
+import styles from './TodoInput.module.css';
 
 export function TodoInput({ onItemAdded }) {
   const onSubmit = (e) => {
@@ -12,8 +13,8 @@ export function TodoInput({ onItemAdded }) {
     <div className="todo_input">
       <form onSubmit={onSubmit}>
         <fieldset>
-          <label>할일:</label>
-          <input name="task" type="text" placeholder="할 일을 입력하세요" />
+          <label>할 일:</label>
+          <input name="task" type="text" placeholder="할 일을 입력하세요" className={styles.todo_input_field} />
         </fieldset>
       </form>
     </div>
