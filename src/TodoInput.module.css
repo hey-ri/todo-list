@@ -16,3 +16,11 @@ input.todo_input_field {
 input::placeholder {
   padding-left: .3rem;
 }
+
+.add_btn {
+  border: 1px solid #ccc;
+  background-color: transparent;
+  height: 25px;
+  width: 40px;
+  margin-left: .3rem;
+}
