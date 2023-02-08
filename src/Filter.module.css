@@ -1,6 +1,6 @@
 .filter {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
     font-size: 14px;
     color: grey;
     width: 100%;
@@ -10,4 +10,8 @@
 
 .active {
     color: black;
+}
+
+input[type=radio] {
+    margin-right: .5rem;
 }

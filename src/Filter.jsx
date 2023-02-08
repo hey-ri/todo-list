@@ -10,27 +10,33 @@ function Filter({ onFilterChanged }) {
 
   return (
     <div className={`${style.filter}`}>
-      <input
-        type="radio"
-        name="filter"
-        checked={selectedFilter === 'all'}
-        onChange={(e) => setSelectedFilter('all')}
-      ></input>
-      <span className={`${style.active}`}>All</span>
-      <input
-        type="radio"
-        name="filter"
-        checked={selectedFilter === 'completed'}
-        onChange={(e) => setSelectedFilter('completed')}
-      ></input>
-      Completed
-      <input
-        type="radio"
-        name="filter"
-        checked={selectedFilter === 'incompleted'}
-        onChange={(e) => setSelectedFilter('incompleted')}
-      ></input>
-      Incompleted
+      <label className={`${style.active}`}>
+        <input
+          type="radio"
+          name="filter"
+          checked={selectedFilter === 'all'}
+          onChange={() => setSelectedFilter('all')}
+        />
+        All
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="filter"
+          checked={selectedFilter === 'completed'}
+          onChange={() => setSelectedFilter('completed')}
+        />
+        Completed
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="filter"
+          checked={selectedFilter === 'incompleted'}
+          onChange={() => setSelectedFilter('incompleted')}
+        />
+        Incompleted
+      </label>
     </div>
   );
 }
