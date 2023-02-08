@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import './App.css';
 import { TodoInput } from './TodoInput';
 import { TodoItemList } from './TodoItemList';
@@ -18,22 +18,20 @@ function App() {
 
   const [todoList, setTodoList] = useState([]);
   const [filter, setFilter] = useState('all');
-  const [filterTodoList, setFilterTodoList] = useState(todoList);
+  const filterTodoList = useMemo(() => {
+    if (filter === 'completed') {
+      return todoList.filter((t) => t.checked);
+    } else if (filter === 'incompleted') {
+      return todoList.filter((t) => !t.checked);
+    } else {
+      return todoList;
+    }
+  }, [filter, todoList]);
 
   const onItemAdded = (newItem) => {
     setTodoList([...todoList, newItem]);
     console.log({ newItem });
   };
-
-  useEffect(() => {
-    if (filter === 'completed') {
-      setFilterTodoList(todoList.filter((t) => t.checked));
-    } else if (filter === 'incompleted') {
-      setFilterTodoList(todoList.filter((t) => !t.checked));
-    } else {
-      setFilterTodoList(todoList);
-    }
-  }, [filter, todoList]);
 
   const onFilterChanged = (filter) => {
     setFilter(filter);
