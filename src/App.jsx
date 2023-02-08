@@ -40,7 +40,7 @@ function App() {
   };
 
   const onTodoRemoved = (id) => {
-    setTodoList((todos) => todos.filter((todo) => todo.id !== id));
+    setTodoList(todoList.filter((todo) => todo.id !== id));
   };
 
   const onTodoChanged = (todo) => {
@@ -50,8 +50,8 @@ function App() {
   return (
     <div className="App">
       <TodoInput onItemAdded={onItemAdded} />
-      <TodoItemList items={filterTodoList} onTodoChanged={onTodoChanged} onTodoRemoved={onTodoRemoved} />
       <Filter onFilterChanged={onFilterChanged}></Filter>
+      <TodoItemList items={filterTodoList} onTodoChanged={onTodoChanged} onTodoRemoved={onTodoRemoved} />
     </div>
   );
 }
