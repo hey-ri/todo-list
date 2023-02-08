@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './TodoItemList.module.css';
+import styles from './TodoItem.module.css';
 
 export function TodoItem({ todo, onTodoRemoved, onTodoChanged }) {
   const [isEditTodo, setIsEditTodo] = useState(false);
@@ -10,17 +10,19 @@ export function TodoItem({ todo, onTodoRemoved, onTodoChanged }) {
     onTodoChanged(todo);
   };
 
-  const onEditTodoBtn = () => {
+  const onEditTodo = () => {
     setIsEditTodo(true);
+    setNewTodo(todo.text);
   };
 
   const onEditTodoInput = (e) => {
     setNewTodo(e.target.value);
   };
 
-  const onSubmitBtn = (todo, newTodo) => {
+  const onSubmit = (todo) => {
     todo.text = newTodo;
     onTodoChanged(todo);
+    setNewTodo('');
 
     setIsEditTodo(false);
   };
@@ -29,15 +31,15 @@ export function TodoItem({ todo, onTodoRemoved, onTodoChanged }) {
     <div>
       <input type="checkbox" checked={todo.checked} onChange={(e) => onCheckedTodo(todo, e.target.checked)} />
       {isEditTodo ? (
-        <input onChange={onEditTodoInput} />
+        <input onChange={onEditTodoInput} value={newTodo} />
       ) : (
         <span className={todo.checked === true ? styles.complete : styles.incomplete}>{todo.text}</span>
       )}
       {!todo.checked ? (
         isEditTodo ? (
-          <button onClick={() => onSubmitBtn(todo, newTodo)}>완료</button>
+          <button onClick={() => onSubmit(todo)}>완료</button>
         ) : (
-          <button onClick={() => onEditTodoBtn()}>수정</button>
+          <button onClick={() => onEditTodo()}>수정</button>
         )
       ) : null}
       <button
