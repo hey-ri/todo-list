@@ -14,10 +14,7 @@ input.todo_input_field {
   border: 1px solid #ccc;
   height: 25px;
   width: 300px;
-}
-
-input::placeholder {
-  padding-left: .3rem;
+  padding-left: .5rem;
 }
 
 .add_btn {
