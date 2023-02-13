@@ -7,7 +7,9 @@ export function TodoInput({ onItemAdded }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    onItemAdded({ text: e.target.task.value, id: uuid(), checked: false });
+    const text = e.target.value.trim();
+    if (text.length === 0) return;
+    onItemAdded({ text, id: uuid(), checked: false });
     console.log(e.target.task.value);
     e.target.task.value = '';
     inputRef.current.focus();
