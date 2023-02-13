@@ -66,13 +66,16 @@ function App() {
     localStorage.setItem('user', JSON.stringify(user));
   };
 
-  const onLogout = (user) => {
+  const onLogout = () => {
     localStorage.removeItem('user', JSON.stringify(''));
-    setUser(user);
+    setUser(null);
   };
 
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{ padding: '20px', position: 'absolute', top: '20%', left: '50%', transform: 'translate(-50%,-50%)' }}
+    >
       {user ? (
         <>
           <NavBar user={user} onLogout={onLogout} />

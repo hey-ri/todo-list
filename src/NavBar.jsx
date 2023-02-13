@@ -3,8 +3,8 @@ import { logout } from './services/api-server';
 
 function NavBar({ user, onLogout }) {
   const logoutHandler = async () => {
-    const user = await logout();
-    onLogout(user);
+    await logout();
+    onLogout();
   };
   return (
     <div>
