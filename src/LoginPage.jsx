@@ -49,36 +49,7 @@ function LoginPage({ onLogin }) {
         onSubmit={submitHandler}
         style={{ display: 'flex', flexDirection: 'column', gap: '10px', position: 'relative' }}
       >
-        {isLogin ? (
-          <h4 style={{ fontWeight: 'normal' }}>로그인</h4>
-        ) : (
-          <h4 style={{ fontWeight: 'normal' }}>회원가입</h4>
-        )}
-        <div style={{ display: 'flex', justifyContent: 'end', position: 'absolute', right: '0' }}>
-          {isLogin ? (
-            <a
-              href=""
-              onClick={(e) => {
-                e.preventDefault();
-                setIsLogin(false);
-              }}
-              style={{ color: 'inherit' }}
-            >
-              회원가입
-            </a>
-          ) : (
-            <a
-              href=""
-              onClick={(e) => {
-                e.preventDefalut();
-                setIsLogin(true);
-              }}
-              style={{ color: 'inherit' }}
-            >
-              로그인
-            </a>
-          )}
-        </div>
+        <Header isLogin={isLogin} />
         <label htmlFor="">email</label>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <label htmlFor="">password</label>
@@ -91,9 +62,40 @@ function LoginPage({ onLogin }) {
         )}
         <button style={{ border: '1px solid #ccc', background: 'transparent' }}>Submit</button>
       </form>
+      <Footer isLogin={isLogin} onModeChange={(page) => setIsLogin(page === 'login')} />
       {error != null && <div style={{ paddingTop: '10px', color: 'red', textAlign: 'center' }}>{error}</div>}
     </div>
   );
 }
 
+const Header = (isLogin) =>
+  isLogin ? <h4 style={{ fontWeight: 'normal' }}>로그인</h4> : <h4 style={{ fontWeight: 'normal' }}>회원가입</h4>;
+
+const Footer = ({ isLogin, onModeChange }) => (
+  <div style={{ textAlign: 'center', paddingTop: '10px', color: 'skyblue' }}>
+    {isLogin ? (
+      <a
+        href=""
+        onClick={(e) => {
+          e.preventDefault();
+          onModeChange('signin');
+        }}
+        style={{ color: 'inherit' }}
+      >
+        회원가입
+      </a>
+    ) : (
+      <a
+        href=""
+        onClick={(e) => {
+          e.preventDefault();
+          onModeChange('login');
+        }}
+        style={{ color: 'inherit' }}
+      >
+        로그인
+      </a>
+    )}
+  </div>
+);
 export default LoginPage;
