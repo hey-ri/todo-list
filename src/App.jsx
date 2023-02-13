@@ -1,9 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import './App.css';
 import { TodoInput } from './TodoInput';
 import { TodoItemList } from './TodoItemList';
 import Filter from './Filter';
 import LoginPage from './LoginPage';
+import NavBar from './NavBar';
+import { getTodos, saveTodos } from './services/api-server';
 
 function App() {
   //@=state / $: = useeffect , => = 뭘 바꿀건지 / * eventlistener
@@ -17,7 +19,7 @@ function App() {
   //    -- TodoItem value={@todo} *onChanged *onRemoved
   // -- Filter *onFilterChanged
 
-  const [user, setUser] = useState(localStorage.getItem('user') || null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
 
   const [todoList, setTodoList] = useState([]);
   const [filter, setFilter] = useState('all');
@@ -46,13 +48,19 @@ function App() {
 
   const onLogin = (user) => {
     setUser(user);
-    localStorage.setItem('user', user);
+    localStorage.setItem('user', JSON.stringify(user));
+  };
+
+  const onLogout = (user) => {
+    localStorage.removeItem('user', JSON.stringify(''));
+    setUser(user);
   };
 
   return (
     <div className="App">
       {user ? (
         <>
+          <NavBar user={user} onLogout={onLogout} />
           <Filter onFilterChanged={onFilterChanged}></Filter>
           <TodoInput onItemAdded={onItemAdded} />
           <TodoItemList items={filterTodoList} onTodoChanged={onTodoChanged} onTodoRemoved={onTodoRemoved} />
