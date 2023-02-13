@@ -29,6 +29,21 @@ function App() {
     else return todoList;
   }, [filter, todoList]);
 
+  useEffect(() => {
+    console.log('user', user);
+    if (user && user.username) {
+      const fetchedTodos = getTodos(user.username);
+      console.log(fetchedTodos);
+      setTodoList(fetchedTodos);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user && user.username && todoList.length > 0) {
+      saveTodos(todoList, user.username);
+    }
+  }, [user, todoList]);
+
   const onItemAdded = (newItem) => {
     setTodoList([...todoList, newItem]);
     console.log({ newItem });
